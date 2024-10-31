@@ -12,6 +12,31 @@ html {
   padding: 0;
 }
 
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  z-index: 10;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+nav a:hover {
+  background-color: #555;
+}
+
 body {
   display: flex;
   font-family: Arial, sans-serif;
