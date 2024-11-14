@@ -1,98 +1,133 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Układ Divów</title>
+    <title>Kalkulator 120725</title>
     <link rel="stylesheet" href="style.css" />
+    <script></script>
   </head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #333;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+    }
+
+    .calculator {
+      width: 300px;
+      background-color: #333;
+      padding: 20px;
+    }
+
+    .display {
+      width: 93%;
+      height: 60px;
+      background-color: #222;
+      color: #fff;
+      font-size: 1.5em;
+      text-align: right;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .button {
+      width: 100%;
+      padding: 20px;
+      font-size: 1.2em;
+      color: #fff;
+      background-color: #555;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .button.equal {
+      background-color: #4caf50;
+      grid-column: span 1;
+    }
+  </style>
+
   <body>
-    <nav>
-      <a href="index.html">Strona1</a>
-      <a href="index2.html">strona2</a>
-      <a href="index3.html">strona3</a>
-      <a href="index4.html">strona4</a>
-    </nav>
-    <form>
-      <div class="form-group">
-        <label for="imie">Imię:</label>
-        <input type="text" name="imie" id="imie" placeholder="Imię" />
+    <div class="calculator">
+      <div class="display" id="display">0</div>
+      <div class="buttons">
+        <button class="button" onclick="clearDisplay()">C</button>
+        <button class="button operator" onclick="appendToExpression('+')">
+            +
+          </button>
+          <button class="button operator" onclick="appendToExpression('-')">
+            −
+          </button>
+          <button class="button operator" onclick="appendToExpression('*')">
+            ×
+          </button>
+
+        <button class="button" onclick="appendToExpression('7')">7</button>
+        <button class="button" onclick="appendToExpression('8')">8</button>
+        <button class="button" onclick="appendToExpression('9')">9</button>
+        <button class="button operator" onclick="appendToExpression('/')">
+            ÷
+          </button>
+
+        <button class="button" onclick="appendToExpression('4')">4</button>
+        <button class="button" onclick="appendToExpression('5')">5</button>
+        <button class="button" onclick="appendToExpression('6')">6</button>
+
+        <button class="button" onclick="appendToExpression('.')">.</button>
+
+        <button class="button" onclick="appendToExpression('1')">1</button>
+        <button class="button" onclick="appendToExpression('2')">2</button>
+        <button class="button" onclick="appendToExpression('3')">3</button>
+
+        <button class="button equal" onclick="calculate()">=</button>
+
+        <button class="button" onclick="appendToExpression('0')">0</button>
+
       </div>
-      <div class="form-group">
-        <label for="nazwisko">Nazwisko:</label>
-        <input
-          type="text"
-          name="nazwisko"
-          id="nazwisko"
-          placeholder="Nazwisko"
-        />
-      </div>
-      <div class="form-group">
-        <label for="adres">Ulica:</label>
-        <input type="text" name="ulica" id="adres" placeholder="Ulica" />
-      </div>
-      <div class="form-group">
-        <label for="drzwi">Drzwi:</label>
-        <input type="text" name="drzwi" id="drzwi" placeholder="Drzwi" />
-      </div>
-      <div class="form-group">
-        <label for="mieszkanie">Mieszkanie:</label>
-        <input
-          type="text"
-          name="mieszkanie"
-          id="mieszkanie"
-          placeholder="Mieszkanie"
-        />
-      </div>
-      <div class="form-group">
-        <label for="miasto">Miasto:</label>
-        <input type="text" name="miasto" id="miasto" placeholder="Miasto" />
-      </div>
-      <div class="form-group">
-        <label for="d_urodzenia">Data urodzenia:</label>
-        <input type="date" name="urodzenia" id="d_urodzenia" />
-      </div>
-      <div class="form-group">
-        <label for="telefon">Numer telefonu:</label>
-        <input
-          type="number"
-          name="telefon"
-          id="telefon"
-          placeholder="Numer telefonu"
-        />
-      </div>
-      <div class="form-group">
-        <label for="email">E-Mail:</label>
-        <input type="email" name="email" id="email" placeholder="E-Mail" />
-      </div>
-      <div class="form-group">
-        <label for="plec">Płeć:</label>
-        <select name="plec" id="plec" title="Płeć">
-          <option value="mezczyzna">Mężczyzna</option>
-          <option value="kobieta">Kobieta</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="dl">Prawo jazdy:</label>
-        <select name="dl" id="dl" title="Prawo jazdy">
-          <option>Tak</option>
-          <option>Nie</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="haslo">Hasło:</label>
-        <input type="password" name="haslo" id="haslo" placeholder="Hasło" />
-      </div>
-      <div class="form-group">
-        <label for="uwagi">Uwagi:</label>
-        <textarea
-          name="uwagi"
-          id="uwagi"
-          cols="30"
-          rows="10"
-          placeholder="Uwagi"
-        ></textarea>
-      </div>
-    </form>
-  </body>
+    </div>
+  <script>
+    let display = document.getElementById("display");
+    let expression = "";
+
+    function appendToExpression(value) {
+      if (expression === "0") {
+        expression = value;
+      } else {
+        expression += value;
+      }
+      updateDisplay(expression);
+    }
+
+    function updateDisplay(value) {
+      display.innerText = value;
+    }
+
+    function clearDisplay() {
+      expression = "";
+      updateDisplay("0");
+    }
+
+    function calculate() {
+      try {
+        const result = eval(expression);
+        expression = result.toString();
+        updateDisplay(expression);
+      } catch {
+        updateDisplay("Błąd");
+        expression = "";
+      }
+    }
+  </script>
 </html>
